@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Fina.Api/Fina.Api.csproj" />
+  <Project Path="Fina.Core/Fina.Core.csproj" />
+  <Project Path="Fina.Web/Fina.Web.csproj" />
+</Solution>
