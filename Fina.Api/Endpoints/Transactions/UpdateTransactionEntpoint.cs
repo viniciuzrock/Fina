@@ -7,11 +7,11 @@ using Fina.Core.Response;
 
 namespace Fina.Api.Endpoints.Transactions;
 
-public class UpdateTransactionEntpoint : IEndpoint
+public class UpdateTransactionEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder builder)
     {
-        builder.MapPut("/{id}", handleAsync)
+        builder.MapPut("/{id}", HandleAsync)
             .WithName("UpdateTransaction")
             .WithDescription("Updates a new transaction")
             .WithSummary("Updates a new transaction")
@@ -19,7 +19,7 @@ public class UpdateTransactionEntpoint : IEndpoint
             .Produces<Response<Transaction?>>();
     }
     
-    private static async Task<IResult> handleAsync( ITransactionHandler handler, UpdateTransactionsRequest request, Guid id)
+    private static async Task<IResult> HandleAsync( ITransactionHandler handler, UpdateTransactionsRequest request, Guid id)
     {
         request.UserId = ApiConfiguration.UserId;
         request.Id = id;

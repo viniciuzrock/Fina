@@ -4,11 +4,10 @@ using Fina.Core.Handlers;
 using Fina.Core.Models;
 using Fina.Core.Requests.Categories;
 using Fina.Core.Response;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Fina.Api.Endpoints.Categories;
 
-public class UpdadeCategoryEndpoint : IEndpoint
+public class UpdateCategoryEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder builder)
     {
