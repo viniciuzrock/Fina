@@ -13,7 +13,6 @@ public class CreateCategoryEndpoint : IEndpoint
             .WithName("CreateCategoryv4")
             .WithSummary("Creates a new Categoryv3")
             .WithDisplayName("Create Categoryv2")
-            .WithTags("CreateCategoryv1")
             .WithOrder(1)
             .Produces<Response<Category?>>();
 

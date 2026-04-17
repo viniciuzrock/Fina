@@ -1,28 +1,34 @@
 using Fina.Api.Data;
+using Fina.Api.Handlers;
 using Fina.Core;
+using Fina.Core.Handlers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fina.Api.Common.Api;
 
 public static class BuildExtension
 {
-    public static void AddConfiguration(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddConfiguration(this WebApplicationBuilder builder)
     {
         ApiConfiguration.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         Configuration.BackendUrl = builder.Configuration.GetValue<string>("BackendUrl") ?? string.Empty;
         Configuration.FrontendUrl = builder.Configuration.GetValue<string>("FrontendUrl") ?? string.Empty;
+        
+        return builder;
     }
 
-    public static void AddDocumentation(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddDocumentation(this WebApplicationBuilder builder)
     {
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(x =>
         {
             x.CustomSchemaIds(n => n.FullName);
         });
+
+        return builder;
     }
 
-    public static void AddDataContext(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddDataContext(this WebApplicationBuilder builder)
     {
         builder
             .Services
@@ -30,9 +36,11 @@ public static class BuildExtension
             {
                 options.UseSqlServer(ApiConfiguration.ConnectionString);
             });
+        
+        return builder;
     }
 
-    public static void AddCrossOrigin(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddCrossOrigin(this WebApplicationBuilder builder)
     {
         builder
             .Services
@@ -49,5 +57,19 @@ public static class BuildExtension
                         .AllowCredentials()
                     )
             );
+        return builder;
+    }
+
+    public static WebApplicationBuilder AddServices(this WebApplicationBuilder builder)
+    {
+        builder
+            .Services
+            .AddTransient<ICategoryHandler, CategoryHandler>();
+        
+        builder
+            .Services
+            .AddTransient<ITransactionHandler, TransactionHandler>();
+        
+        return builder;
     }
 }

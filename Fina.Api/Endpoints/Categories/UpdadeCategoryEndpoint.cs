@@ -13,7 +13,7 @@ public class UpdateCategoryEndpoint : IEndpoint
     {
         builder.MapPatch("/{id}", HandleAsync)
             .WithName("UpdateCategory")
-            .WithTags("Category")
+            .WithTags("Categories")
             .WithSummary("Update a Category")
             .WithDescription("Update a Category")
             .WithOrder(2)

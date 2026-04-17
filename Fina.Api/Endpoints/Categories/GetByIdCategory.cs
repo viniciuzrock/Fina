@@ -13,7 +13,6 @@ public class GetByIdCategory : IEndpoint
     {
         builder.MapGet("/{id}", HandleAsync)
             .WithName("GetCategoryById")
-            .WithTags("Category")
             .WithSummary("Gets a category by id")
             .WithDescription("Gets a category by id")
             .WithOrder(4)

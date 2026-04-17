@@ -7,10 +7,12 @@ using Fina.Core.Handlers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.AddConfiguration();
-builder.AddDataContext();
-builder.AddCrossOrigin();
-builder.AddDocumentation();
+builder
+    .AddConfiguration()
+    .AddDataContext()
+    .AddCrossOrigin()
+    .AddDocumentation()
+    .AddServices();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
